@@ -1,0 +1,1504 @@
+
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<title>DJ WILMER EN VIVO </title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#000000">
+<style>
+@media (min-width: 768px) {
+  #background-blur {
+    filter: none !important;
+    opacity: 1 !important;
+  }
+}
+
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    #background-blur {
+  filter: blur(30px);
+  opacity: 0.6;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-size: cover;
+  background-position: center;
+  transition: background-image 0.5s ease-in-out;
+}
+
+    
+
+    .logo {
+      display: block;
+      width: 200px !important;
+      height: 200px !important;
+      border-radius: 50%;
+      border: 6px solid white;
+      object-fit: cover;
+      margin: 30px auto 20px auto !important;
+      z-index: 1;
+    }
+
+    .title {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .live-indicator {
+      background: rgba(255,255,255,0.2);
+      padding: 5px 15px;
+      border-radius: 15px;
+      display: inline-flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-right: 8px;
+    }
+
+    #song-title {
+      display: block !important;
+      font-size: 22px !important;
+    }
+
+    .song {
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .play-btn {
+      width: 90px !important;
+      height: 90px !important;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      border: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .play-btn img {
+      width: 42px !important;
+      height: 42px !important;
+    }
+
+    .volume {
+      margin-top: 30px !important;
+      width: 80%;
+      margin: 0 auto 15px;
+    }
+
+    .store-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      padding: 10px 0;
+      z-index: 100;
+    }
+
+    @media (min-width: 768px) {
+      .store-buttons {
+        position: fixed;
+        bottom: 60px;
+        left: 0;
+        right: auto;
+        padding-left: 20px;
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .store-buttons {
+        position: fixed;
+        bottom: 60px;
+        left: 0;
+        right: 0;
+        justify-content: center;
+      }
+    }
+
+    .store-buttons a {
+      background: rgba(255,255,255,0.2);
+      padding: 10px 15px;
+      border-radius: 15px;
+      color: white;
+      text-decoration: none;
+    }
+
+    @media (min-width: 768px) {
+      
+
+      .info {
+        flex: 1;
+      }
+
+      .store-buttons {
+        justify-content: flex-start !important;
+        left: 0 !important;
+        padding-left: 20px !important;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .controls {
+        align-items: center !important;
+        justify-content: center !important;
+        flex-direction: column !important;
+      }
+
+      .play-btn {
+        margin: 0 auto !important;
+      }
+
+      
+    }
+
+    input[type=range] {
+      accent-color: white;
+    }
+  
+@media (min-width: 768px) {
+  .controls {
+    position: relative;
+  }
+
+  .play-btn {
+    position: relative !important;
+    z-index: 1;
+  }
+
+  .volume {
+    position: absolute !important;
+    z-index: 2 !important;
+    top: 36% !important;
+    left: 58% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 60% !important;
+    height: 6px !important;
+    margin: 0 !important;
+  }
+}
+
+
+.live-indicator {
+  background: red !important;
+  color: white !important;
+  font-weight: bold !important;
+}
+
+
+@keyframes zoomLoop {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 0.95;
+  }
+}
+
+@media (max-width: 767px) {
+  .logo {
+    animation: zoomLoop 2s ease-in-out infinite;
+  }
+}
+
+
+.musical-notes {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 0;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.note {
+  position: absolute;
+  bottom: 60px;
+  font-size: 18px;
+  animation: floatUp 4s linear infinite, rainbow 2s linear infinite !important;
+  opacity: 0;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-150px); opacity: 0; }
+}
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-150px); opacity: 0; }
+}
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-150px); opacity: 0; }
+}
+
+
+@media (min-width: 768px) {
+  .musical-notes {
+    display: none !important;
+  }
+}
+
+
+@media (min-width: 768px) {
+  .player-container {
+    display: flex;
+    gap: 30px;
+    text-align: left;
+    align-items: center;
+    
+  }
+
+  .info {
+    flex: 1;
+  }
+
+  .controls {
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+</style>
+<style>
+@keyframes rainbow {
+  0%   { color: red; }
+  20%  { color: orange; }
+  40%  { color: yellow; }
+  60%  { color: green; }
+  80%  { color: blue; }
+  100% { color: violet; }
+}
+
+.musical-notes .note {
+  animation: floatUp 4s linear infinite, rainbow 2s linear infinite !important;
+}
+</style>
+<style>
+@keyframes zoomLoopCover {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 0.95;
+  }
+}
+
+#cover-art.zooming {
+  animation: zoomLoopCover 2.5s ease-in-out infinite;
+}
+</style>
+<style>
+@keyframes spinLogo {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+@media (min-width: 768px) {
+  #cover-art.spinning {
+    animation: spinLogo 10s linear infinite;
+  }
+}
+
+
+@media (min-width: 768px) {
+  #logo.spinning {
+    animation: spinLogo 8s linear infinite;
+  }
+}
+</style>
+
+<style>
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+.en-vivo {
+  animation: blink 1s infinite;
+}
+</style>
+
+
+<style>
+#menu-redes {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 40px 25px;
+  display: none;
+  flex-direction: column;
+  gap: 26px;
+  z-index: 9999;
+  width: 250px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+  min-height: 400px;
+}
+#menu-redes a {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: white;
+  font-weight: 700;
+  font-size: 22px;
+  text-decoration: none;
+  transition: transform 0.2s;
+}
+#menu-redes a:hover {
+  transform: translateX(6px);
+}
+#menu-redes img {
+  width: 32px;
+  height: 32px;
+}
+#boton-flotante {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(8px);
+  border: none;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+  z-index: 10000;
+}
+</style>
+
+
+<style>
+.barra-decorativa {
+  height: 4px;
+  width: 100%;
+  max-width: 360px;
+  margin: 10px auto 20px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.5), rgba(255,255,255,0.1));
+  transition: background 0.8s ease-in-out;
+}
+</style>
+
+
+<style>
+#instalar-app-btn {
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  background: rgba(255, 255, 255, 0.12);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  backdrop-filter: blur(20px);
+  cursor: pointer;
+  z-index: 9999;
+  display: none;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  transition: background 0.3s;
+}
+#instalar-app-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+</style>
+
+<style>
+#barra-instalacion {
+  position: fixed;
+  bottom: 60px;
+  left: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(20px);
+  padding: 14px 20px;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  color: white;
+  text-align: center;
+  font-size: 13px;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.4);
+}
+#barra-instalacion strong {
+  font-size: 14px;
+}
+#instalar-app-btn {
+  margin-top: 10px;
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: bold;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+  transition: background 0.3s;
+}
+#instalar-app-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+</style>
+
+<style>
+@keyframes zoomMove {
+  0% {
+    transform: scale(1) translateY(0px);
+  }
+  50% {
+    transform: scale(1.08) translateY(10px);
+  }
+  100% {
+    transform: scale(1) translateY(0px);
+  }
+}
+
+#background-blur {
+  animation: zoomMove 18s ease-in-out infinite;
+  transform-origin: center;
+}
+</style>
+
+
+<style>
+@media (min-width: 768px) {
+  #background-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.25);
+    z-index: -1; /* debajo de los elementos visibles */
+  }
+}
+</style>
+
+
+
+<style>
+.player-container {
+  position: relative !important;
+  border-radius: 30px;
+  padding: 0 30px 30px;
+  text-align: center;
+}
+
+/* Solo en PC: mayor ancho visible */
+@media (min-width: 768px) {
+  .player-container {
+    display: flex;
+    gap: 30px;
+    text-align: left;
+    align-items: center;
+    max-width: 1400px;
+    min-width: 600px;
+    margin: 0 auto;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(35px);
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .info {
+    flex: 1;
+  }
+
+  .controls {
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+</style>
+
+
+</head>
+<body>
+
+
+<!-- Botón de menú flotante -->
+<button id="boton-flotante" onclick="toggleMenu()">☰</button>
+
+<!-- Menú acrílico de redes sociales con íconos reales -->
+<div id="menu-redes">
+  <a href="https://web.facebook.com/DJCHOCHOBARWILMER" target="_blank">
+    <img src="https://img.icons8.com/ios-filled/24/ffffff/facebook-new.png" alt="Facebook"/> Facebook
+  </a>
+  <a href="https://www.instagram.com/wilmerdelgadocieza/" target="_blank">
+    <img src="https://img.icons8.com/ios-filled/24/ffffff/instagram-new.png" alt="Instagram"/> Instagram
+  </a>
+  <a href="https://x.com/Dj_Wilmer_Peru" target="_blank">
+    <img src="https://img.icons8.com/ios-filled/24/ffffff/twitterx--v1.png" alt="X"/> X
+  </a>
+  <a href="https://wa.me/51980634177" target="_blank">
+    <img src="https://img.icons8.com/ios-filled/24/ffffff/whatsapp.png" alt="WhatsApp"/> WhatsApp
+  </a>
+  <a href="https://www.youtube.com/channel/UCmJFc5f20PHmTwvvX5sONGQ" target="_blank">
+    <img src="https://img.icons8.com/ios-filled/24/ffffff/youtube-play.png" alt="YouTube"/> YouTube
+  </a>
+
+  <a href="https://wilmerdelgadocieza.blogspot.com/" target="_blank">
+    <img src="https://img.icons8.com/ios-filled/24/ffffff/internet--v1.png" alt="Web"/> Sitio Web
+  </a>
+
+  <a href="#" onclick="abrirPrivacidad()">
+    <img src="https://img.icons8.com/ios-filled/24/ffffff/lock-2.png" alt="Privacidad"/> Políticas de Privacidad
+  </a>
+</div>
+
+
+<!-- Programación al lado izquierdo en PC -->
+<div id="programacion-pc" style="display: none;">
+<div style="position: fixed; top: 100px; left: 20px; width: 260px; background: rgba(0,0,0,0.4); border-radius: 15px; padding: 15px; color: white; font-size: 14px; z-index: 999;">
+<h3 style="text-align: center; margin-top: 0;">📺 Programación</h3>
+<div style="margin-bottom: 15px; background: rgba(0,0,0,0.4); border-radius: 12px; padding: 12px; text-align: center;">
+<img alt="Habla Causa" src="https://i.ibb.co/zTNCYCH9/bandicam-2025-08-18-22-44-05-630.png" style="width: 70px; height: 70px; border-radius: 50%; border: 2px solid white; margin-bottom: 10px;"/>
+<div><strong>🎙️ EL BASILON DE LAS MAÑANAS</strong></div>
+<div>👤 DJ MILY</div>
+<div>🕘 9:00 a.m. - 12:00 p.m.</div>
+</div>
+</div>
+</div>
+<div id="background-blur"></div>
+<div id="background-overlay"></div>
+
+<div class="player-container">
+<div style="position: relative; width: 220px; height: 220px; margin: 30px auto 20px auto;">
+<img alt="Carátula" id="cover-art" src="https://is5-ssl.mzstatic.com/image/thumb/Music125/v4/6c/c8/f4/6cc8f4bc-61b0-d103-3a6f-ea3fe31d59dc/197190130256.jpg/300x300bb.jpg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 50%; border: 4px solid white;"/>
+<img alt="Logo" class="logo spinning" id="logo" src="https://i.ibb.co/mhw9LGh/DJ-WILMER-PNG-ORIGINAL.png
+" style="position: relative; z-index: 1; display: none;"/>
+</div>
+<div class="info">
+<div id="station-name" style="display:none;"></div>
+<div id="track-title" style="display:none;"></div>
+<div class="controls">
+<div class="title">DJ WILMER EN VIVO PODER QUE SE SIENTE </div>
+<div class="barra-decorativa"></div>
+<div class="live-indicator">
+<div class="dot"></div>
+<span>EN VIVO</span>
+</div>
+<div class="song" id="song-title">Cargando...</div>
+<div class="controls"><button class="play-btn" onclick="togglePlay()">
+<img alt="Play" id="play-icon" src="https://img.icons8.com/ios-filled/50/ffffff/play--v1.png"/>
+</button>
+<input class="volume" id="volume" max="1" min="0" step="0.01" type="range" value="1"/>
+<div id="programacion-card" style="display: none; margin-top: 30px; padding: 0 20px;">
+<div style="background: rgba(0,0,0,0.45); border-radius: 15px; padding: 15px; color: white; text-align: center;">
+<img alt="Habla Causa" src="https://i.ibb.co/zTNCYCH9/bandicam-2025-08-18-22-44-05-630.png" style="width: 100px; height: 100px; border-radius: 50%; border: 3px solid white; margin-bottom: 10px;"/>
+<h4 style="margin: 0 0 8px;">🎙️ EL BASILON DE LAS MAÑANAS</h4>
+<p style="margin: 4px 0;">👤 DJ PAOLA</p>
+<p style="margin: 4px 0;">🕘 9:00 a.m. - 12:00 p.m.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="store-buttons">
+<a href="https://playzonastore.com/radio/dj-wilmer" target="_blank"><img src="https://img.icons8.com/ios-filled/24/ffffff/google-play.png" style="width:18px;height:18px;vertical-align:middle;margin-right:6px;">Play Store</a>
+<a href="https://playzonastore.com/radio/dj-wilmer" target="_blank"><img src="https://img.icons8.com/ios-filled/24/ffffff/mac-os.png" style="width:18px;height:18px;vertical-align:middle;margin-right:6px;">App Store</a>
+<a href="#" onclick="abrirModal()"><img src="https://img.icons8.com/ios-filled/24/ffffff/calendar--v1.png" style="width:18px;height:18px;vertical-align:middle;margin-right:6px;">Programación</a>
+</div>
+<audio id="radio" src="https://stream.zeno.fm/wttrxavefwzuv"></audio>
+<script>
+    const audio = document.getElementById('radio');
+    const playIcon = document.getElementById('play-icon');
+    const volumeSlider = document.getElementById('volume');
+    const songTitleElement = document.getElementById("song-title");
+    const cover = document.getElementById("cover-art");
+    const logo = document.getElementById("logo");
+
+    let isPlaying = false;
+
+    function setBlurBackground(url) {
+      const isMobile = window.innerWidth < 768;
+      const bg = document.getElementById("background-blur");
+      if (bg && url) {
+        if (isMobile) {
+          bg.style.filter = "blur(30px)";
+          bg.style.opacity = "0.6";
+        } else {
+          bg.style.filter = "none";
+          bg.style.opacity = "1";
+        }
+        bg.style.backgroundImage = `url(${url})`;
+        document.body.style.backgroundColor = "black";
+        bg.style.display = "block";
+      }
+    }
+
+    function togglePlay() {
+      if (isPlaying) {
+        audio.pause();
+        playIcon.src = "https://img.icons8.com/ios-filled/50/ffffff/play--v1.png";
+      } else {
+        audio.play().catch(e => console.log("Playback blocked:", e));
+        playIcon.src = "https://img.icons8.com/ios-filled/50/ffffff/pause--v1.png";
+
+        // Configurar Media Session justo después de iniciar reproducción
+        if ('mediaSession' in navigator) {
+          const cover = document.getElementById("cover-art");
+          const logo = document.getElementById("logo");
+          const visibleImage = (cover && cover.style.display !== "none") ? cover.src : (logo ? logo.src : "");
+
+          navigator.mediaSession.metadata = new MediaMetadata({
+            title: document.getElementById("song-title").textContent || "Transmitiendo en vivo",
+            artist: 'Radio San Miguel',
+            album: 'En Vivo',
+            artwork: [
+              { src: visibleImage || 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Pictogram_voting_list.svg/512px-Pictogram_voting_list.svg.png', sizes: '300x300', type: 'image/jpeg' }
+            ]
+          });
+        }
+      }
+      isPlaying = !isPlaying;
+    }
+
+    volumeSlider.addEventListener("input", () => {
+      audio.volume = volumeSlider.value;
+    });
+
+    const source = new EventSource("https://api.zeno.fm/mounts/metadata/subscribe/wke4ravefwzuv");
+
+    source.addEventListener("message", function(event) {
+      try {
+        const data = JSON.parse(event.data);
+        if (data && data.streamTitle) {
+          const title = data.streamTitle;
+          songTitleElement.textContent = title;
+
+          fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(title)}&entity=song&limit=1`)
+            .then(res => res.json())
+            .then(itunesData => {
+              if (itunesData.results && itunesData.results.length > 0) {
+                const artwork = itunesData.results[0].artworkUrl100.replace("100x100bb", "300x300bb");
+                cover.src = artwork;
+                cover.classList.add("zooming");
+                logo.classList.remove("zooming");
+                if (window.innerWidth >= 768) {
+                  cover.classList.add("spinning");
+                } else {
+                  cover.classList.remove("spinning");
+                }
+                cover.style.display = "block";
+                logo.style.display = "none";
+                
+                setBlurBackground(artwork);
+              } else {
+                cover.style.display = "none";
+                logo.style.display = "block";
+                
+                cover.classList.remove("zooming");cover.classList.remove("spinning");setBlurBackground(logo.src);
+              }
+            });
+        }
+      } catch (e) {
+        songTitleElement.textContent = "Transmitiendo en vivo";
+      }
+    });
+
+    source.addEventListener("error", function() {
+      songTitleElement.textContent = "Transmitiendo en vivo";
+    });
+  </script>
+<script>
+  const isMobile = window.innerWidth < 768;
+  if (isMobile) {
+    const container = document.createElement("div");
+    container.className = "musical-notes";
+    container.id = "musical-notes";
+    document.body.appendChild(container);
+
+    const emojis = ["🎵", "🎶", "♪", "♫"];
+
+    function createNote() {
+      const note = document.createElement("span");
+      note.classList.add("note");
+      note.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      note.style.left = Math.random() * 100 + "%";
+      note.style.animationDelay = Math.random() * 3 + "s";
+      container.appendChild(note);
+      setTimeout(() => container.removeChild(note), 5000);
+    }
+
+    setInterval(createNote, 300);
+  }
+</script>
+<script>
+  const existing = document.getElementById("musical-notes");
+  if (existing) existing.remove();
+
+  const isMobile = window.matchMedia("(max-width: 767px)").matches;
+
+  if (isMobile) {
+    const container = document.createElement("div");
+    container.className = "musical-notes";
+    container.id = "musical-notes";
+    document.body.appendChild(container);
+
+    const emojis = ["🎵", "🎶", "♪", "♫"];
+
+    function createNote() {
+      if (!document.getElementById("musical-notes")) return;
+      const note = document.createElement("span");
+      note.classList.add("note");
+      note.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      note.style.left = Math.random() * 100 + "%";
+      note.style.animationDelay = Math.random() * 3 + "s";
+      container.appendChild(note);
+      setTimeout(() => note.remove(), 5000);
+    }
+
+    setInterval(createNote, 300);
+  }
+</script>
+<script>
+  document.querySelectorAll(".store-buttons a").forEach(btn => {
+    if (btn.textContent.includes("Programación")) {
+      btn.addEventListener("click", function(e) {
+        e.preventDefault();
+        const prog = document.getElementById("programacion");
+        if (prog.style.display === "none") {
+          prog.style.display = "block";
+          window.scrollTo({ top: prog.offsetTop, behavior: 'smooth' });
+        } else {
+          prog.style.display = "none";
+        }
+      });
+    }
+  });
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const isMobile = window.innerWidth < 768;
+  const card = document.getElementById("programacion-card");
+  const pcList = document.getElementById("programacion-pc");
+  const botones = document.querySelectorAll(".store-buttons a");
+
+  botones.forEach(btn => {
+    if (btn.textContent.includes("Programación")) {
+      btn.addEventListener("click", function(e) {
+        e.preventDefault();
+
+        if (isMobile && card) {
+          card.style.display = card.style.display === "none" ? "block" : "none";
+          if (card.style.display === "block") {
+            window.scrollTo({ top: card.offsetTop, behavior: 'smooth' });
+          }
+        } else if (!isMobile && pcList) {
+          pcList.style.display = pcList.style.display === "none" ? "block" : "none";
+        }
+      });
+    }
+  });
+});
+</script>
+<div id="programacion-pc" style="display: none;">
+<div style="position: fixed; top: 100px; left: 20px; max-width: 260px; background: rgba(255,255,255,0.12); border-radius: 15px; padding: 15px; color: white; font-size: 14px; z-index: 999;">
+<h3 style="text-align: center; margin-top: 0;">📺 Programación</h3>
+<div style="margin-bottom: 15px; background: rgba(0,0,0,0.4); border-radius: 10px; padding: 10px;">
+<strong>🎙️ EL BASILON DE LAS MAÑANAS</strong><br/>
+      👤 Roli Javier<br/>
+      🕘 9:00 a.m. - 12:00 p.m.
+    </div>
+</div>
+</div>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const isMobile = window.innerWidth < 768;
+    const card = document.getElementById("programacion-card");
+    const pcList = document.getElementById("programacion-pc");
+
+    document.querySelectorAll(".store-buttons a").forEach(btn => {
+      if (btn.textContent.includes("Programación")) {
+        btn.addEventListener("click", function(e) {
+          e.preventDefault();
+
+          if (isMobile && card) {
+            card.style.display = card.style.display === "none" ? "block" : "none";
+            if (card.style.display === "block") {
+              window.scrollTo({ top: card.offsetTop, behavior: 'smooth' });
+            }
+          } else if (!isMobile && pcList) {
+            pcList.style.display = pcList.style.display === "none" ? "block" : "none";
+          }
+        });
+      }
+    });
+  });
+</script>
+<!-- Modal acrílico flotante -->
+<div id="modal-programacion" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.4); backdrop-filter: blur(6px); z-index:1000; justify-content:center; align-items:center;">
+<div style="background: rgba(0,0,0,0.4); border-radius:20px; padding:20px; width:90%; max-width:320px; color:white; position:relative;">
+<button onclick="cerrarModal()" style="position:absolute; top:5px; left:50%; transform:translateX(-50%); z-index:9999;">✖</button>
+<h3 style="text-align:center; margin-top:0;">📺 Programación</h3>
+<div style="text-align:center;">
+<img alt="Habla Causa" src="https://i.ibb.co/zTNCYCH9/bandicam-2025-08-18-22-44-05-630.png" style="width:80px; height:80px; border-radius:50%; border:3px solid white; margin-bottom:10px;"/>
+<div><strong>🎙️ EL BASION DE LAS MAÑANAS </strong></div>
+<div>👤 DJ MILY<div>📅 Lunes a viernes</div></div>
+<div>🕘 9:00 a.m. - 12:00 p.m.</div>
+<div style="margin-top:20px;">
+<img alt="Consejos Karibeña" src="https://i.postimg.cc/9F8gS9YW/images-2025-06-29-T151713-147.jpg" style="width:80px; height:80px; border-radius:50%; border:3px solid white; margin-bottom:10px;"/>
+<div><strong>🎙️ Consejos Karibeña</strong></div>
+<div>👤 Meche Sánchez</div>
+<div>📅 Lunes a domingo</div>
+<div>🕛 12:00 p.m. - 1:00 p.m.</div>
+</div>
+<div style="margin-top:20px;">
+<img alt="Tarde en el Caribe" src="https://i.ibb.co/mhw9LGh/DJ-WILMER-PNG-ORIGINAL.png
+" style="width:80px; height:80px; border-radius:50%; border:3px solid white; margin-bottom:10px;"/>
+<div><strong>🎙️ Tarde en el Caribe</strong></div>
+<div>👤 DJ WILMER</div>
+<div>📅 Lunes a sábado</div><div>🕐 4:00 p.m. - 10:00 p.m.</div>
+</div>
+<div style="margin-top:20px;">
+<img alt="El Super Show Karibeña" src="https://i.ibb.co/Ps54R47G/images.jpg " style="width:80px; height:80px; border-radius:50%; border:3px solid white; margin-bottom:10px;"/>
+<div><strong>🎙️ FIESTA  Karibeña</strong></div>
+<div>👤 DJ LINDA</div>
+<div>📅 Lunes a viernes</div>
+<div>🕓 4:00 p.m. - 7:00 p.m.</div>
+</div>
+
+<div style="margin-top:20px;">
+<img alt="La colección" src="https://i.postimg.cc/FF2NtK5c/images-2025-06-29-T151612-689.jpg" style="width:80px; height:80px; border-radius:50%; border:3px solid white; margin-bottom:10px;"/>
+<div><strong>🎙️ La colección</strong></div>
+<div>👤 Ricardo Loza</div>
+<div>📅 Lunes a domingo</div>
+<div>🕖 7:00 p.m. - 11:00 p.m.</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+function abrirModal() {
+  document.getElementById("modal-programacion").style.display = "flex";
+}
+function cerrarModal() {
+  document.getElementById("modal-programacion").style.display = "none";
+}
+</script>
+
+<!-- NUEVO MODAL DE PROGRAMACIÓN BONITA -->
+<div id="modal-bonito" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:2000; overflow-y:auto;">
+  <div style="background:linear-gradient(to bottom, #1f1c2c, #928dab); padding:30px 15px; border-radius:0 0 20px 20px;">
+    <button onclick="document.getElementById('modal-bonito').style.display='none'" style="position:fixed; top:10px; left:50%; transform:translateX(-50%); background:none; border:none; color:white; font-size:24px;">✖</button>
+    <h2 style="text-align:center; margin-bottom:30px;">🗓️ PROGRAMACIÓN SEMANAL</h2>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:20px;">
+      <div style="background:rgba(255,255,255,0.08); border-radius:20px; padding:20px; text-align:center; backdrop-filter: blur(25px);">
+        <img src="https://i.ibb.co/d4RM2GTD/equipo-1754357741.png" style="width:100px;height:100px;border-radius:50%;border:3px solid white;object-fit:cover;margin-bottom:10px;">
+        <h3 style="margin:10px 0 5px;color:#ffdd57;">🎙️ Ricas mañanas</h3>
+        <p>👤 Paola Loja</p>
+        <p>🕓 4:00 a.m. - 9:00 a.m.</p>
+      </div>
+      <div style="background:rgba(255,255,255,0.08); border-radius:20px; padding:20px; text-align:center; backdrop-filter: blur(25px);">
+        <img src="https://i.ibb.co/zTNCYCH9/bandicam-2025-08-18-22-44-05-630.png" style="width:100px;height:100px;border-radius:50%;border:3px solid white;object-fit:cover;margin-bottom:10px;">
+        <h3 style="margin:10px 0 5px;color:#ffdd57;">🎙️ EL BASILON DE LAS MAÑANAS </h3>
+        <p>👤 DJ MILY</p>
+        <p>🕘 9:00 a.m. - 12:00 p.m.</p>
+      </div>
+      <div style="background:rgba(255,255,255,0.08); border-radius:20px; padding:20px; text-align:center; backdrop-filter: blur(25px);">
+        <img src="https://i.postimg.cc/9F8gS9YW/images-2025-06-29-T151713-147.jpg" style="width:100px;height:100px;border-radius:50%;border:3px solid white;object-fit:cover;margin-bottom:10px;">
+        <h3 style="margin:10px 0 5px;color:#ffdd57;">🎙️ Consejos Karibeña</h3>
+        <p>👤 Meche Sánchez</p>
+        <p>🕛 12:00 p.m. - 1:00 p.m.</p>
+      </div>
+      <div style="background:rgba(255,255,255,0.08); border-radius:20px; padding:20px; text-align:center; backdrop-filter: blur(25px);">
+        <img src="https://i.ibb.co/mhw9LGh/DJ-WILMER-PNG-ORIGINAL.png
+" style="width:100px;height:100px;border-radius:50%;border:3px solid white;object-fit:cover;margin-bottom:10px;">
+        <h3 style="margin:10px 0 5px;color:#ffdd57;">🎙️ Tarde en el Caribe</h3>
+        <p>👤 DJ WILMER</p>
+        <p>🕐 4:00 p.m. - 10:00 p.m.</p>
+      </div>
+      <div style="background:rgba(255,255,255,0.08); border-radius:20px; padding:20px; text-align:center; backdrop-filter: blur(25px);">
+        <img src="https://i.ibb.co/Ps54R47G/images.jpg" style="width:100px;height:100px;border-radius:50%;border:3px solid white;object-fit:cover;margin-bottom:10px;">
+        <h3 style="margin:10px 0 5px;color:#ffdd57;">🎙️ FIESTA KARIBEÑA</h3>
+        <p>👤 DJ LINDA</p>
+        <p>🕓 4:00 p.m. - 7:00 p.m.</p>
+      </div>
+      <div style="background:rgba(255,255,255,0.08); border-radius:20px; padding:20px; text-align:center; backdrop-filter: blur(25px);">
+        <img src="https://i.postimg.cc/FF2NtK5c/images-2025-06-29-T151612-689.jpg" style="width:100px;height:100px;border-radius:50%;border:3px solid white;object-fit:cover;margin-bottom:10px;">
+        <h3 style="margin:10px 0 5px;color:#ffdd57;">🎙️ La colección</h3>
+        <p>👤 Ricardo Loza</p>
+        <p>🕖 7:00 p.m. - 11:00 p.m.</p>
+      </div>
+      <div style="background:rgba(255,255,255,0.08); border-radius:20px; padding:20px; text-align:center; backdrop-filter: blur(25px);">
+        <img src="https://i.postimg.cc/02kYG9rg/images-2025-06-29-T151518-528.jpg" style="width:100px;height:100px;border-radius:50%;border:3px solid white;object-fit:cover;margin-bottom:10px;">
+        <h3 style="margin:10px 0 5px;color:#ffdd57;">🎙️ Seranta Karibeña</h3>
+        <p>👤 Programador</p>
+        <p>🕚 11:00 p.m. - 4:00 a.m.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  function abrirModal() {
+    const modal = document.getElementById('modal-bonito');
+    if (modal) modal.style.display = 'block';
+  }
+</script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const ahora = new Date();
+  const horaActual = ahora.getHours();
+  const minutoActual = ahora.getMinutes();
+
+  const programas = [
+    { id: 0, inicio: 4, fin: 9 },
+    { id: 1, inicio: 9, fin: 12 },
+    { id: 2, inicio: 12, fin: 13 },
+    { id: 3, inicio: 13, fin: 16 },
+    { id: 4, inicio: 16, fin: 19 },
+    { id: 5, inicio: 19, fin: 23 },
+    { id: 6, inicio: 23, fin: 24 },
+    { id: 6, inicio: 0, fin: 4 }, // Seranta continúa hasta 4am
+  ];
+
+  programas.forEach(p => {
+    if (
+      (horaActual >= p.inicio && horaActual < p.fin) ||
+      (p.inicio > p.fin && (horaActual >= p.inicio || horaActual < p.fin))
+    ) {
+      const tarjeta = document.querySelectorAll('#modal-bonito .grid > div')[p.id];
+      if (tarjeta) {
+        const vivo = document.createElement('div');
+        vivo.innerText = '🔴 EN VIVO';
+        vivo.style.marginTop = '10px';
+        vivo.style.fontWeight = 'bold';
+        vivo.style.color = '#ff4d4d';
+        tarjeta.appendChild(vivo);
+      }
+    }
+  });
+});
+</script>
+
+
+<script>
+function actualizarEnVivo() {
+  const ahora = new Date();
+  const horaActual = ahora.getHours();
+
+  const programas = [
+    { id: 0, inicio: 4, fin: 9 },
+    { id: 1, inicio: 9, fin: 12 },
+    { id: 2, inicio: 12, fin: 13 },
+    { id: 3, inicio: 13, fin: 16 },
+    { id: 4, inicio: 16, fin: 19 },
+    { id: 5, inicio: 19, fin: 23 },
+    { id: 6, inicio: 23, fin: 24 },
+    { id: 6, inicio: 0, fin: 4 }
+  ];
+
+  const tarjetas = document.querySelectorAll('#modal-bonito > div > div > div');
+  tarjetas.forEach(t => {
+    const tag = t.querySelector('.en-vivo');
+    if (tag) tag.remove();
+  });
+
+  programas.forEach(p => {
+    if (
+      (horaActual >= p.inicio && horaActual < p.fin) ||
+      (p.inicio > p.fin && (horaActual >= p.inicio || horaActual < p.fin))
+    ) {
+      const tarjeta = tarjetas[p.id];
+      if (tarjeta) {
+        const vivo = document.createElement('div');
+        vivo.className = 'en-vivo';
+        vivo.innerText = '🔴 EN VIVO';
+        vivo.style.marginTop = '10px';
+        vivo.style.fontWeight = 'bold';
+        vivo.style.color = '#ff4d4d';
+        tarjeta.appendChild(vivo);
+      }
+    }
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  actualizarEnVivo();
+  setInterval(actualizarEnVivo, 60000);
+});
+</script>
+
+
+
+<script>
+const programas = [
+  {
+    id: 0,
+    nombre: "Ricas mañanas",
+    locutor: "Paola Loja",
+    inicio: 4,
+    fin: 9,
+    logo: "https://i.ibb.co/d4RM2GTD/equipo-1754357741.png"
+  },
+  {
+    id: 1,
+    nombre: "Habla Causa",
+    locutor: "Roli Javier",
+    inicio: 9,
+    fin: 12,
+    logo: "https://i.postimg.cc/TYTZ6xQH/Picsart-25-06-28-23-14-29-783.png"
+  },
+  {
+    id: 2,
+    nombre: "Consejos Karibeña",
+    locutor: "Meche Sánchez",
+    inicio: 12,
+    fin: 13,
+    logo: "https://i.postimg.cc/9F8gS9YW/images-2025-06-29-T151713-147.jpg"
+  },
+  {
+    id: 3,
+    nombre: "Tarde en el Caribe",
+    locutor: "Julio Loza",
+    inicio: 13,
+    fin: 16,
+    logo: "https://i.postimg.cc/9MXJSc07/images-2025-06-29-T151628-549.jpg"
+  },
+  {
+    id: 4,
+    nombre: "El Super Show Karibeña",
+    locutor: "Nicolás Lukar",
+    inicio: 16,
+    fin: 19,
+    logo: "https://i.postimg.cc/7YqLf6hz/images-2025-06-29-T151548-861.jpg"
+  },
+  {
+    id: 5,
+    nombre: "La colección",
+    locutor: "Ricardo Loza",
+    inicio: 19,
+    fin: 23,
+    logo: "https://i.postimg.cc/FF2NtK5c/images-2025-06-29-T151612-689.jpg"
+  },
+  {
+    id: 6,
+    nombre: "Seranta Karibeña",
+    locutor: "Locutor Seranta",
+    inicio: 23,
+    fin: 4,
+    logo: "https://i.postimg.cc/02kYG9rg/images-2025-06-29-T151518-528.jpg"
+  }
+];
+
+function detectarProgramaActual() {
+  const ahora = new Date();
+  const hora = ahora.getHours();
+
+  for (let p of programas) {
+    if (
+      (p.inicio < p.fin && hora >= p.inicio && hora < p.fin) ||
+      (p.inicio > p.fin && (hora >= p.inicio || hora < p.fin))
+    ) {
+      return p;
+    }
+  }
+  return null;
+}
+
+
+function reemplazarContenidoTemporal() {
+  const logo = document.getElementById("logo");
+  const nombreEl = document.querySelector(".title");
+  const metadataEl = document.getElementById("song-title");
+
+  if (!logo || !nombreEl || !metadataEl) return;
+
+  const originalLogo = logo.getAttribute("data-original") || logo.src;
+  const originalNombre = nombreEl.getAttribute("data-original") || nombreEl.textContent;
+  const originalMeta = metadataEl.getAttribute("data-original") || metadataEl.textContent;
+
+  logo.setAttribute("data-original", originalLogo);
+  nombreEl.setAttribute("data-original", originalNombre);
+  metadataEl.setAttribute("data-original", originalMeta);
+
+  const programa = detectarProgramaActual();
+  if (!programa) return;
+
+  logo.src = programa.logo;
+  nombreEl.textContent = "👤 " + programa.locutor.toUpperCase();
+  metadataEl.textContent = programa.nombre;
+
+  // 🆕 Actualizar notificación multimedia
+  if ('mediaSession' in navigator) {
+    navigator.mediaSession.metadata = new MediaMetadata({
+      title: programa.nombre,
+      artist: programa.locutor,
+      album: 'En Vivo',
+      artwork: [
+        { src: programa.logo, sizes: '300x300', type: 'image/jpeg' }
+      ]
+    });
+  }
+
+  setTimeout(() => {
+    logo.src = originalLogo;
+    nombreEl.textContent = originalNombre;
+    metadataEl.textContent = originalMeta;
+  }, 10000);
+}
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  setTimeout(reemplazarContenidoTemporal, 1000);
+  setInterval(reemplazarContenidoTemporal, 300000);
+});
+</script>
+
+
+
+<script>
+const programacion = [
+  {
+    nombre: "El Súper Show Karibeña",
+    locutor: "Nicolás Lukar",
+    inicio: "04:00",
+    fin: "07:00",
+    logo: "https://i.postimg.cc/7YqLf6hz/images-2025-06-29-T151548-861.jpg",
+    dias: ["lunes", "martes", "miércoles", "jueves", "viernes"]
+  },
+  {
+    nombre: "La colección",
+    locutor: "Ricardo Loza",
+    inicio: "19:00",
+    fin: "23:00",
+    logo: "https://i.postimg.cc/FF2NtK5c/images-2025-06-29-T151612-689.jpg",
+    dias: ["lunes", "martes", "miércoles", "jueves", "viernes", "sábado", "domingo"]
+  }
+];
+
+function detectarProgramaActual() {
+  const ahora = new Date();
+  const diaActual = ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"][ahora.getDay()];
+  const hora = ahora.getHours().toString().padStart(2, "0") + ":" + ahora.getMinutes().toString().padStart(2, "0");
+
+  return programacion.find(p => {
+    if (!p.dias.includes(diaActual)) return false;
+    return p.inicio <= hora && hora < p.fin;
+  });
+}
+
+
+function reemplazarContenidoTemporal() {
+  const logo = document.getElementById("logo");
+  const nombreEl = document.querySelector(".title");
+  const metadataEl = document.getElementById("song-title");
+
+  if (!logo || !nombreEl || !metadataEl) return;
+
+  const originalLogo = logo.getAttribute("data-original") || logo.src;
+  const originalNombre = nombreEl.getAttribute("data-original") || nombreEl.textContent;
+  const originalMeta = metadataEl.getAttribute("data-original") || metadataEl.textContent;
+
+  logo.setAttribute("data-original", originalLogo);
+  nombreEl.setAttribute("data-original", originalNombre);
+  metadataEl.setAttribute("data-original", originalMeta);
+
+  const programa = detectarProgramaActual();
+  if (!programa) return;
+
+  logo.src = programa.logo;
+  nombreEl.textContent = "👤 " + programa.locutor.toUpperCase();
+  metadataEl.textContent = programa.nombre;
+
+  // 🆕 Actualizar notificación multimedia
+  if ('mediaSession' in navigator) {
+    navigator.mediaSession.metadata = new MediaMetadata({
+      title: programa.nombre,
+      artist: programa.locutor,
+      album: 'En Vivo',
+      artwork: [
+        { src: programa.logo, sizes: '300x300', type: 'image/jpeg' }
+      ]
+    });
+  }
+
+  setTimeout(() => {
+    logo.src = originalLogo;
+    nombreEl.textContent = originalNombre;
+    metadataEl.textContent = originalMeta;
+  }, 10000);
+}
+
+
+setTimeout(reemplazarContenidoTemporal, 1000);
+setInterval(reemplazarContenidoTemporal, 300000);
+</script>
+
+
+<script>
+  function toggleMenu() {
+    const menu = document.getElementById("menu-redes");
+    menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+  }
+  document.addEventListener("click", function (e) {
+    const menu = document.getElementById("menu-redes");
+    const boton = document.getElementById("boton-flotante");
+    if (!menu.contains(e.target) && !boton.contains(e.target)) {
+      menu.style.display = "none";
+    }
+  });
+</script>
+
+
+<!-- Modal de Políticas de Privacidad -->
+<div id="modal-privacidad" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+  background:rgba(0,0,0,0.5); backdrop-filter:blur(8px); z-index:3000; overflow-y:auto;">
+  <div style="background: rgba(0,0,0,0.4); margin:50px auto; padding:30px; border-radius:20px; color:white;
+    max-width:700px; width:90%; position:relative;">
+    <button onclick="document.getElementById('modal-privacidad').style.display='none'"
+      style="position:absolute; top:15px; left:50%; transform:translateX(-50%); background:none; border:none; color:white; font-size:24px; cursor:pointer;">✖</button>
+    <h2 style="text-align:center;">Política de Privacidad de Perú Streaming</h2>
+    <p><strong>Fecha de entrada en vigencia:</strong> 23 de septiembre de 2025</p>
+    <p>En Streaming Delgado, accesible desde nuestras aplicaciones o sitios web, la privacidad de nuestros usuarios es una prioridad.
+    Esta Política de Privacidad explica cómo recopilamos, usamos y protegemos la información que usted nos proporciona.</p>
+
+    <h3>1. Información que recopilamos</h3>
+    <p>- Información personal (como nombre, correo electrónico, número de teléfono) que usted proporciona voluntariamente.</p>
+    <p>- Información técnica y de uso (IP, navegador, sistema operativo, interacción con nuestra app o web).</p>
+
+    <h3>2. Uso de la información</h3>
+    <p>Utilizamos la información para ofrecer y mejorar nuestros servicios, responder consultas y mantener la comunicación con usted.</p>
+
+    <h3>3. Compartición de información</h3>
+    <p>No vendemos ni alquilamos su información. Solo compartimos con terceros cuando es necesario para operar nuestros servicios.</p>
+
+    <h3>4. Seguridad</h3>
+    <p>Adoptamos medidas razonables para proteger su información, aunque ningún sistema es 100% seguro.</p>
+
+    <h3>5. Derechos del usuario</h3>
+    <p>Puede solicitar acceso, rectificación o eliminación de sus datos escribiendo a: <strong>wilmerdelgadocieza@gmail.com</strong></p>
+
+    <h3>6. Cambios</h3>
+    <p>Nos reservamos el derecho de actualizar esta política. Los cambios se publicarán en esta misma página.</p>
+
+    <h3>7. Contacto</h3>
+    <p>Correo: <strong>wilmerdelgadocieza@gmail.com</strong><br/>
+       Teléfono: <strong>+51 980634177</strong></p>
+  </div>
+</div>
+
+
+<script>
+  function abrirPrivacidad() {
+    document.getElementById('modal-privacidad').style.display = 'block';
+    document.getElementById('menu-redes').style.display = 'none';
+  }
+</script>
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js')
+      .then(() => console.log('Service Worker registrado correctamente'))
+      .catch(error => console.log('Error al registrar Service Worker:', error));
+  }
+</script>
+<button id="instalar-app-btn">📲 Instalar app</button>
+
+<div style="display:none; right:20px; background:rgba(255,255,255,0.12); backdrop-filter:blur(12px); padding:12px 18px; border-radius:16px; color:white; font-size:13px; max-width:260px; z-index:9998; box-shadow:0 4px 10px rgba(0,0,0,0.3); text-align:left;">
+  DJ WILMER.<br>
+  <strong>DJ WILMER</strong>
+</div>
+
+
+<script>
+  let deferredPrompt;
+  const installBtn = document.getElementById('instalar-app-btn');
+
+  function detectarPlataforma() {
+    const ua = navigator.userAgent || navigator.vendor || window.opera;
+    if (/android/i.test(ua)) return "📲 Instalar en tu Android";
+    if (/iPad|iPhone|iPod/.test(ua)) return "📱 Instalar en tu iPhone";
+    if (/Win/i.test(ua)) return "💻 Instalar en tu Windows";
+    return "📲 Instalar app";
+  }
+
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    installBtn.textContent = detectarPlataforma();
+    installBtn.style.display = 'block';
+  });
+
+  installBtn.addEventListener('click', () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === 'accepted') {
+          console.log('Usuario aceptó instalar la app');
+        } else {
+          console.log('Usuario canceló la instalación');
+        }
+        deferredPrompt = null;
+        installBtn.style.display = 'none';
+      });
+    }
+  });
+</script>
+
+<div id="barra-instalacion">
+  DJ WILMER.<br>
+  <strong>DJ WILMER EN VIVO</strong><br>
+  <button id="instalar-app-btn">📲 Instalar app</button>
+</div>
+
+
+<script>
+  const barra = document.getElementById('barra-instalacion');
+  const installBtn = document.getElementById('instalar-app-btn');
+
+  // Mostrar la barra siempre (modo prueba)
+  barra.style.display = 'flex';
+
+  function detectarPlataforma() {
+    const ua = navigator.userAgent || navigator.vendor || window.opera;
+    if (/android/i.test(ua)) return "📲 Instalar en tu Android";
+    if (/iPad|iPhone|iPod/.test(ua)) return "📱 Instalar en tu iPhone";
+    if (/Win/i.test(ua)) return "💻 Instalar en tu Windows";
+    return "📲 Instalar app";
+  }
+
+  installBtn.textContent = detectarPlataforma();
+
+  // Simula instalación para pruebas
+  installBtn.addEventListener('click', () => {
+    alert('Simulación: instalar app');
+    barra.style.display = 'none';
+  });
+</script>
+
+
+<footer id="footer-copyright" style="
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  padding: 10px 10px;
+  font-size: 14px;
+  color: white;
+  background: transparent;
+  z-index: 9999;
+  pointer-events: auto;">
+  <a href="https://wilmerdelgadocieza.blogspot.com/" target="_blank" style="color: white; text-decoration: none;">
+                                                              © Streaming Delgado Desde El Distrito de camporredondo luya amazonas .980634177
+  </a>
+</footer>
+
+
+
+<script>
+  function actualizarVisibilidadFooter() {
+    const modalProgramacion = document.getElementById("modal-bonito");
+    const modalPrivacidad = document.getElementById("modal-privacidad");
+    const footer = document.getElementById("footer-copyright");
+
+    if (!footer) return;
+
+    const isProgramacionVisible = modalProgramacion && window.getComputedStyle(modalProgramacion).display !== "none";
+    const isPrivacidadVisible = modalPrivacidad && window.getComputedStyle(modalPrivacidad).display !== "none";
+
+    footer.style.display = (isProgramacionVisible || isPrivacidadVisible) ? "none" : "block";
+  }
+
+  setInterval(actualizarVisibilidadFooter, 500);
+</script>
+
+</body>
+
+
+
+</html>
+<style>
+@media (min-width: 768px) {
+  .store-buttons {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: auto !important;
+    padding: 10px 20px !important;
+    justify-content: flex-start !important;
+    background: none !important;
+    z-index: 1 !important;
+  }
+}
+
+.musical-notes {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 0;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.note {
+  position: absolute;
+  bottom: 60px;
+  font-size: 18px;
+  animation: floatUp 4s linear infinite, rainbow 2s linear infinite !important;
+  opacity: 0;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-150px); opacity: 0; }
+}
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-150px); opacity: 0; }
+}
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-150px); opacity: 0; }
+}
+
+
+@media (min-width: 768px) {
+  .musical-notes {
+    display: none !important;
+  }
+}
+
+</style>
