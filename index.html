@@ -629,11 +629,11 @@
 </div>
 </div>
 <div class="store-buttons">
-<a href="https://playzonastore.com/radio/dj-wilmer" target="_blank"><img src="https://img.icons8.com/ios-filled/24/ffffff/google-play.png" style="width:18px;height:18px;vertical-align:middle;margin-right:6px;">Play Store</a>
-<a href="https://playzonastore.com/radio/dj-wilmer" target="_blank"><img src="https://img.icons8.com/ios-filled/24/ffffff/mac-os.png" style="width:18px;height:18px;vertical-align:middle;margin-right:6px;">App Store</a>
+<a href="https://megaplay-peru.com/radio/djwilmer" target="_blank"><img src="https://img.icons8.com/ios-filled/24/ffffff/google-play.png" style="width:18px;height:18px;vertical-align:middle;margin-right:6px;">Play Store</a>
+<a href="https://megaplay-peru.com/radio/djwilmer" target="_blank"><img src="https://img.icons8.com/ios-filled/24/ffffff/mac-os.png" style="width:18px;height:18px;vertical-align:middle;margin-right:6px;">App Store</a>
 <a href="#" onclick="abrirModal()"><img src="https://img.icons8.com/ios-filled/24/ffffff/calendar--v1.png" style="width:18px;height:18px;vertical-align:middle;margin-right:6px;">Programación</a>
 </div>
-<audio id="radio" src="https://stream.zeno.fm/wttrxavefwzuv"></audio>
+<audio id="radio" src="https://radios03.audiostreaming.ar:10438/stream"></audio>
 <script>
     const audio = document.getElementById('radio');
     const playIcon = document.getElementById('play-icon');
@@ -692,7 +692,7 @@
       audio.volume = volumeSlider.value;
     });
 
-    const source = new EventSource("https://api.zeno.fm/mounts/metadata/subscribe/wke4ravefwzuv");
+    const source = new EventSource("https://radios03.audiostreaming.ar/cp/get_info.php?p=9128");
 
     source.addEventListener("message", function(event) {
       try {
